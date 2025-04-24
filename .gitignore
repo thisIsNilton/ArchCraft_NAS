@@ -2,7 +2,10 @@
 *.bin
 *.gz
 *.tar.gz
+*.txt
 cifar-100-python/
+class_il/scripts/
+task_il/scripts/
 
 # Arquivos de cache do Python
 __pycache__/

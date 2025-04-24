@@ -86,8 +86,8 @@ class iImageNet1000(iData):
 
     def download_data(self):
         assert 0, "You should specify the folder of your dataset"
-        train_dir = "/path/to/Imagenet/train/"
-        test_dir = "/path/to/Imagenet/val/"
+        train_dir = "/home/chocomenta/Documents/USP/Pos/Inteligencia Computacional/ArchCraft-main/data/train"
+        test_dir = "/home/chocomenta/Documents/USP/Pos/Inteligencia Computacional/ArchCraft-main/data/test"
 
         train_dset = datasets.ImageFolder(train_dir)
         test_dset = datasets.ImageFolder(test_dir)
@@ -115,8 +115,8 @@ class iImageNet100(iData):
 
     def download_data(self):
         #assert 0, "You should specify the folder of your dataset"
-        train_dir = "/home/xiaotian/dataset/Imagenet/train/"
-        test_dir = "/home/xiaotian/dataset/Imagenet/val/"
+        train_dir = "/home/chocomenta/Documents/USP/Pos/Inteligencia Computacional/ArchCraft-main/data/train"
+        test_dir = "/home/chocomenta/Documents/USP/Pos/Inteligencia Computacional/ArchCraft-main/data/test"
 
         train_dset = datasets.ImageFolder(train_dir)
         test_dset = datasets.ImageFolder(test_dir)

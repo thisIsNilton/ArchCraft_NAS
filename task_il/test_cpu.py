@@ -3,12 +3,14 @@ import os
 import sys
 import numpy as np
 import torch
+import copy
 import dataloaders.cifar100 as dataloader
 from approaches import sgd as approach
 import utils
-import copy
+import class_nilton as intruder
 
-Inc_cls = 5  # Número de classes incrementadas a cada passo
+
+Inc_cls = 25  # Número de classes incrementadas a cada passo
 
 def run_test():
     indi_no = 0
@@ -22,7 +24,7 @@ class TrainModel(object):
     def __init__(self, code, indi_no, network_name):
         self.device = torch.device("cpu")  # Força o uso da CPU
         self.grad_clip = 10
-        self.epoch = 20
+        self.epoch = 2
         self.lr = 0.01
         self.code = code
         self.file_id = 'indiH%03d' % indi_no
@@ -37,7 +39,13 @@ class TrainModel(object):
         pool_code = copy.deepcopy(self.code[2])
         double_code = copy.deepcopy(self.code[3])
         print(self.code)
-        data, taskcla, inputsize = dataloader.get(seed=s, pc_valid=0, inc=self.inc)
+        # Carga de dados
+        data, taskcla, inputsize = dataloader.get(seed=s, pc_valid=0.15, inc=self.inc)
+        # print(f">>> data\n----\n{data[0]}")
+        # print(f"\n\n>>> taskcla\n----\n{taskcla}")
+        # print(f"\n\n>>> inputsize\n----\n{inputsize}")
+        # NILTON: Visualiza imagens
+        # intruder.show_task_images(data=data, task_id=0, split='train', n=10)
 
         if self.network_name == 'arch_craft':
             from networks.arch_craft import Net

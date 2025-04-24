@@ -38,10 +38,18 @@ class FitnessEvaluate(object):
             if indi.acc < 0:
                 has_evaluated_offspring = True
                 time.sleep(30)
-                gpu_id = GPUTools.detect_available_gpu_id()
-                while gpu_id is None:
-                    time.sleep(60)
+
+                try:
                     gpu_id = GPUTools.detect_available_gpu_id()
+                except:
+                    gpu_id = None
+
+                # gpu_id = GPUTools.detect_available_gpu_id()
+                
+                # while gpu_id is None:
+                #     time.sleep(60)
+                #     gpu_id = GPUTools.detect_available_gpu_id()
+                
                 if gpu_id is not None:
                     file_name = indi.id
                     self.log.info('Begin to train %s'%(file_name))

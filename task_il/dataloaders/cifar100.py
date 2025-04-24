@@ -1,7 +1,7 @@
 import os,sys
 import numpy as np
 import torch
-import utils
+import utils as utils
 from torchvision import datasets,transforms
 from sklearn.utils import shuffle
 

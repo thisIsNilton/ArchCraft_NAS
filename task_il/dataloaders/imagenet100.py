@@ -1,13 +1,15 @@
 import os,sys
 import numpy as np
 import torch
-import utils
 from torchvision import datasets,transforms
 from sklearn.utils import shuffle
 
+# sys.path.append('../')
+# import task_il.utils
+
 def get(seed=0,pc_valid=0, inc=5):
-    assert 100%inc == 0
-    task_num=100//inc
+    assert 10%inc == 0
+    task_num=10//inc
     data={}
     taskcla=[]
     size=[3,32,32]
