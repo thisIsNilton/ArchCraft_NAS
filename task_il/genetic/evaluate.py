@@ -33,16 +33,23 @@ class FitnessEvaluate(object):
                 indi.acc = float(_acc)
         self.log.info('Total hit %d individuals for fitness'%(_count))
 
+        #### NILTON #####
+        file_name = indi.id
+        f = open('./populations/after_%s.txt'%(file_name[4:6]), 'w+')
+        f.flush()
+        f.close()
+        #### NILTON #####
         has_evaluated_offspring = False
         for indi in self.individuals:
             if indi.acc < 0:
                 has_evaluated_offspring = True
                 time.sleep(30)
 
-                try:
-                    gpu_id = GPUTools.detect_available_gpu_id()
-                except:
-                    gpu_id = None
+                # try:
+                #     gpu_id = GPUTools.detect_available_gpu_id()
+                # except:
+                #     gpu_id = None
+                gpu_id = None
 
                 # gpu_id = GPUTools.detect_available_gpu_id()
                 
