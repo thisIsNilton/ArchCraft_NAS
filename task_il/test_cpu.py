@@ -1,6 +1,7 @@
 from __future__ import print_function
 import os
 import sys
+import pandas as pd
 import numpy as np
 import torch
 import copy
@@ -24,12 +25,16 @@ class TrainModel(object):
     def __init__(self, code, indi_no, network_name):
         self.device = torch.device("cpu")  # Força o uso da CPU
         self.grad_clip = 10
-        self.epoch = 2
+        self.epoch = 20
         self.lr = 0.01
         self.code = code
         self.file_id = 'indiH%03d' % indi_no
         self.inc = Inc_cls
         self.network_name = network_name
+        # Nilton
+        self.counter = 0
+        self.dict_forgetting = []
+
 
     def process(self, s):
         print('\n\n')
@@ -40,7 +45,7 @@ class TrainModel(object):
         double_code = copy.deepcopy(self.code[3])
         print(self.code)
         # Carga de dados
-        data, taskcla, inputsize = dataloader.get(seed=s, pc_valid=0.15, inc=self.inc)
+        data, taskcla, inputsize = dataloader.get(seed=s, pc_valid=0, inc=self.inc)
         # print(f">>> data\n----\n{data[0]}")
         # print(f"\n\n>>> taskcla\n----\n{taskcla}")
         # print(f"\n\n>>> inputsize\n----\n{inputsize}")
@@ -104,6 +109,9 @@ class TrainModel(object):
                 f = sum(max(acc[j, k] for j in range(k, t)) - acc[t, k] for k in range(t)) / t
                 afs.append(f)
                 print(f'af: {f:.5f}')
+                # Nilton
+                self.dict_forgetting.append({"task" : self.counter,
+                                             "forgetting" : f})
 
         print('*' * 100)
         print('Acurácias =')
@@ -113,6 +121,12 @@ class TrainModel(object):
                 print('{:5.1f}% '.format(100 * acc[i, j]), end='')
             print()
         print('*' * 100)
+
+        # Nilton
+        df0 = pd.DataFrame(acc)
+        df0.to_parquet("./df_acc_classes.parquet")
+        df0 = pd.DataFrame(self.dict_forgetting)
+        df0.to_parquet("./df_forgetting.parquet")
 
         aia = np.mean(aps)
         print(f'aia: {aia:.5f}')

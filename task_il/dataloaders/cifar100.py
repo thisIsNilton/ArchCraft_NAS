@@ -20,8 +20,8 @@ def get(seed=0,pc_valid=0, inc=5):
 
         # CIFAR100
         dat={}
-        dat['train']=datasets.CIFAR100('../data/',train=True,download=True,transform=transforms.Compose([transforms.ToTensor(),transforms.Normalize(mean,std)]))
-        dat['test']=datasets.CIFAR100('../data/',train=False,download=True,transform=transforms.Compose([transforms.ToTensor(),transforms.Normalize(mean,std)]))
+        dat['train']=datasets.CIFAR100('./data/',train=True,download=True,transform=transforms.Compose([transforms.ToTensor(),transforms.Normalize(mean,std)]))
+        dat['test']=datasets.CIFAR100('./data/',train=False,download=True,transform=transforms.Compose([transforms.ToTensor(),transforms.Normalize(mean,std)]))
         for n in range(task_num):
             data[n]={}
             data[n]['name']='cifar100'

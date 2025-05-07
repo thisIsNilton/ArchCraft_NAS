@@ -54,7 +54,7 @@ class FitnessEvaluate(object):
                 #     time.sleep(60)
                 #     gpu_id = GPUTools.detect_available_gpu_id()
 
-                if gpu_id is not None:
+                if gpu_id is None: #if gpu_id is not None:
                     file_name = indi.id
                     self.log.info('Begin to train %s'%(file_name))
                     module_name = 'scripts.%s'%(file_name)
@@ -66,7 +66,8 @@ class FitnessEvaluate(object):
                         _module = importlib.import_module('.', module_name)
                     _class = getattr(_module, 'RunModel')
                     cls_obj = _class()
-                    p = Process(target=cls_obj.do_work, args=('%d'%(gpu_id), file_name,))
+                    # p = Process(target=cls_obj.do_work, args=('%d'%(gpu_id), file_name,))
+                    p = Process(target=cls_obj.do_work, args=('cpu', file_name,))
                     p.start()
             else:
                 file_name = indi.id

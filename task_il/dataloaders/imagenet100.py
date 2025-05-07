@@ -8,8 +8,8 @@ from sklearn.utils import shuffle
 # import task_il.utils
 
 def get(seed=0,pc_valid=0, inc=5):
-    assert 10%inc == 0
-    task_num=10//inc
+    assert 100%inc == 0
+    task_num=100//inc
     data={}
     taskcla=[]
     size=[3,32,32]
