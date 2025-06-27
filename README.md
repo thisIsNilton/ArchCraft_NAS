@@ -1,4 +1,4 @@
-<h1 style="color:red">[CLICK AQUI para ser redirecionado para as apresentações da matéria de Inteligência Computacional](https://github.com/thisIsNilton/ArchCraft_NAS/tree/minotauro/apresentacoes)</h1>
+<h1><a href='https://github.com/thisIsNilton/ArchCraft_NAS/tree/minotauro/apresentacoes'>CLICK AQUI para ser redirecionado para as apresentações da matéria de Inteligência Computacional</a></h1>
 <div align="center">
 <h1> Revisiting Neural Networks for Continual Learning:<br />
   An Architectural Perspective
